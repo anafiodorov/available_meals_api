@@ -83,7 +83,7 @@ app.post('/login', (req, res) => {
       }
 
       var token = jwt.sign({ id: user.clientid }, config.secret, {
-        expiresIn: 86400, // 24 hours
+        expiresIn: 20, // 24 hours
       });
       res.status(200).send({
         id: user.clientid,
