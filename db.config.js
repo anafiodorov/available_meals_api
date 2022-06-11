@@ -8,6 +8,14 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
 });
+pool.on('connect', (client) => {
+  client.query(`SET search_path TO availablemeals, public`);
+});
+
+pool.on('error', (err) => {
+  console.log(err);
+  return;
+});
 
 module.exports = {
   pool,
