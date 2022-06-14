@@ -8,8 +8,9 @@ const bcrypt = require('bcryptjs');
 const config = require('./auth.config.js');
 const jwt = require('jsonwebtoken');
 const { verifyToken } = require('./auth.jwt.js');
+var https = require('https');
 
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
   res.status(200).send('Hello World!');
 });
 
@@ -118,3 +119,7 @@ app.post('/orders', verifyToken, (req, res) => {
       res.status(500).send(error);
     });
 });
+setInterval(function () {
+  https.get('https://availablemeals-app.onrender.com/');
+  https.get('https://availablemeals-api.onrender.com/hello');
+}, 1000 * 60 * 25); // every 25 minutes
