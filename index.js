@@ -120,7 +120,7 @@ app.post('/orders', verifyToken, (req, res) => {
     });
 });
 setInterval(function () {
-  console.log('set interval artizan');
-  https.get('https://artizan.onrender.com/');
-  https.get('https://artizan-api.onrender.com/hello');
+  console.log('set interval availablemeals');
+  https.get('https://availablemeals-app.onrender.com');
+  https.get('https://availablemeals-api.onrender.com');
 }, 1000 * 60 * 13); // every 13 minutes
