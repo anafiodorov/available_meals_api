@@ -122,5 +122,5 @@ app.post('/orders', verifyToken, (req, res) => {
 setInterval(function () {
   console.log('set interval availablemeals');
   https.get('https://availablemeals-app.onrender.com');
-  https.get('https://availablemeals-api.onrender.com');
+  https.get('https://availablemeals-api.onrender.com/hello');
 }, 1000 * 60 * 13); // every 13 minutes
