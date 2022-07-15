@@ -9,6 +9,7 @@ const config = require('./auth.config.js');
 const jwt = require('jsonwebtoken');
 const { verifyToken } = require('./auth.jwt.js');
 var https = require('https');
+var cron = require('node-cron');
 
 app.get('/hello', (req, res) => {
   res.status(200).send('Hello World!');
@@ -119,8 +120,20 @@ app.post('/orders', verifyToken, (req, res) => {
       res.status(500).send(error);
     });
 });
-setInterval(function () {
-  console.log('set interval availablemeals');
-  https.get('https://availablemeals-app.onrender.com');
-  https.get('https://availablemeals-api.onrender.com/hello');
-}, 1000 * 60 * 13); // every 13 minutes
+// setInterval(function () {
+//   console.log('set interval availablemeals');
+//   https.get('https://availablemeals-app.onrender.com');
+//   https.get('https://availablemeals-api.onrender.com/hello');
+// }, 1000 * 60 * 13); // every 13 minutes
+cron.schedule(
+  '*/13 10-22 * * *',
+  () => {
+    console.log('Running a job at 01:00 at America/Sao_Paulo timezone');
+    https.get('https://artizan.onrender.com/');
+    https.get('https://artizan-api.onrender.com/hello');
+  },
+  {
+    scheduled: true,
+    timezone: 'Europe/Bucharest',
+  }
+);
