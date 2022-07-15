@@ -129,8 +129,8 @@ cron.schedule(
   '*/13 10-22 * * *',
   () => {
     console.log('Running a job at 01:00 at America/Sao_Paulo timezone');
-    https.get('https://artizan.onrender.com/');
-    https.get('https://artizan-api.onrender.com/hello');
+    https.get('https://availablemeals-app.onrender.com');
+    https.get('https://availablemeals-api.onrender.com/hello');
   },
   {
     scheduled: true,
